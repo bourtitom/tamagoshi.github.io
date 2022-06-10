@@ -18,22 +18,32 @@ let createAni = document.getElementById('createAni');
 let backInscrit = document.getElementById('back-inscrit');
 let mesAnimeaux = document.getElementById('mesAnimeaux');
 
-let bddFaim = document.getElementById('bddFaim');
-let bddAmour = document.getElementById('bddAmour');
-let bddTyred = document.getElementById('bddTyred');
+let foodMod = document.getElementById('bddFaim');
+let amourMod = document.getElementById('bddAmour');
+let tyerMod = document.getElementById('bddTyred');
 
 
 let MaxFood = document.getElementById('MaxFood');
 let MaxAmour = document.getElementById('MaxAmour');
 let MaxTyred = document.getElementById('MaxTyred');
 
-
 let btnManger = document.getElementById('btnManger');
+let btnPlay = document.getElementById('btn-play');
+let btnfight = document.getElementById('btn-fight');
+let btnDODO = document.getElementById('btn-dodo');
+let btnHUG = document.getElementById('btn-hug');
+let btnCaresse = document.getElementById('btn-caresse');
+
+
 // les systemes 
 
-let argent = 100;
+let ModManFood;
+let ModManAmour;
+let ModManTyred;
 
-bourse.innerText = argent + "€";
+let money = 0;
+bourse.innerText = money + "€";
+
 
 // le constructor 
 
@@ -62,7 +72,7 @@ function CreateAnimal(race, nom, tune){
         this.amour = 150;
         this.fatigue = 100;
         this.argent = 500;
-    }else{
+    }else  {
         this.faim = 220;
         this.amour = 220;
         this.fatigue = 120;
@@ -71,11 +81,88 @@ function CreateAnimal(race, nom, tune){
     }
     this.nom = nom;
 
-    
+    money += this.argent;
+    bourse.innerText = money + "€";
+
     MaxFood.innerHTML = this.faim;
     MaxAmour.innerHTML = this.amour;
     MaxTyred.innerHTML = this.fatigue;
-  
+    // le max est égales a ce qui est bien et le Mod c'est ce qui vas être modulable
+    let ModManFood = Math.round(this.faim /4);
+    let ModManAmour = Math.round(this.amour);
+    let ModManTyred = Math.round(this.fatigue);
+console.log(ModManFood)
+    foodMod.innerHTML = ModManFood;
+    amourMod.innerHTML = ModManAmour;
+    tyerMod.innerHTML = ModManTyred;
+
+// BTN manger actif / joué 
+btnManger.addEventListener('click', function(){
+    ModManFood += 10;
+    foodMod.innerText = ModManFood;
+    ModManTyred -= 10;
+    tyerMod.innerText = ModManTyred;
+
+})
+// jouez
+btnPlay.addEventListener('click', function(){
+    ModManFood -= 2;
+    foodMod.innerText = ModManFood;
+    ModManAmour += 15;
+    amourMod.innerText = ModManAmour;
+    ModManTyred -= 10;
+    tyerMod.innerText = ModManTyred;
+
+})
+
+// combattre
+btnfight.addEventListener('click', function(){
+    ModManFood -= 2;
+    foodMod.innerText = ModManFood;
+    ModManTyred -= 10;
+    tyerMod.innerText = ModManTyred;
+    money += 25;
+    bourse.innerText = money + "€";
+
+})
+
+// dodo
+btnDODO.addEventListener('click', function(){
+    ModManFood -= 10;
+    foodMod.innerText = ModManFood;
+    ModManTyred += 10;
+    tyerMod.innerText = ModManTyred;
+})
+// calin
+btnHUG.addEventListener('click', function(){
+    ModManAmour += 15;
+    amourMod.innerText = ModManAmour;
+    ModManTyred -= 10;
+    tyerMod.innerText = ModManTyred;
+})
+
+btnCaresse.addEventListener('click', function(){
+    ModManAmour += 10;
+    amourMod.innerText = ModManAmour;
+    ModManTyred -= 5;
+    tyerMod.innerText = ModManTyred;
+})
+
+
+ // la taxe xd
+setInterval(function() { 
+    console.log('La taxe'); 
+    ModManFood -= 10;
+    foodMod.innerText = ModManFood;
+    ModManAmour -= 15;
+    amourMod.innerText = ModManAmour;
+    ModManTyred -= 10;
+    tyerMod.innerText = ModManTyred;
+    money -= 10;
+    bourse.innerText = money + "€";
+}, 30000);
+
+
 }
 
 
@@ -194,48 +281,7 @@ function créon(prenom, race ) {
 
 
 
-    // fond music 
-
-    function add_line() {
-        let line = document.createElement("audio");
-        let head=document.getElementsByTagName('body')[0];
-        line.type = "audio/mp3";
-        line.src="dorime.mp3";
-        line.id="bgSong" ;
-     line.autoplay = true;
-     line.loop = true;
-        head.appendChild(line);
-    }
-    
-    if(document.getElementById('bgSong')==null){
-     add_line();
-    let audio = document.getElementById('bgSong');
-    audio.volume = 0.5;
-    }
-
-
-
     /// function + 
-
-    let PointFood = 100;
-    bddFaim.innerText = PointFood;
-    let PointAmour = 100;
-    bddAmour.innerText = PointAmour;
-    let PointFatigue = 100;
-    bddTyred.innerText = PointFatigue;
-            
-function addpoint(nbr , point , bdd) {
-    point += nbr;
-    bdd.innerText = point;
-}
-
-function removepoint(nbr , point , bdd) {
-    point -= nbr;
-    bdd.innerText = point;
-}
-
-
-
 
 
 

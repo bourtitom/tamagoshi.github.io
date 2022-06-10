@@ -41,3 +41,23 @@ balls.forEach((el, i, ra) => {
     }
   );
 });
+
+
+  // fond music 
+
+  function add_line() {
+    let line = document.createElement("audio");
+    let head=document.getElementsByTagName('body')[0];
+    line.type = "audio/mp3";
+    line.src="dorime.mp3";
+    line.id="bgSong" ;
+ line.autoplay = true;
+ line.loop = true;
+    head.appendChild(line);
+}
+
+if(document.getElementById('bgSong')==null){
+ add_line();
+let audio = document.getElementById('bgSong');
+audio.volume = 0.5;
+}

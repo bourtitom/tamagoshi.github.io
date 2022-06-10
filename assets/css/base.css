@@ -54,8 +54,9 @@ h1{
     background-color: darkolivegreen;
     color: white;
     display: none;
-  
-}
+    top: 0px;
+    z-index: 1;
+  }
 
 .deroule{
     animation: 1s linear 0.5ms deroulant forwards;
